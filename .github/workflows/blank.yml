@@ -45,3 +45,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
+
+      - name: Flake8
+        run: flake8 --exclude=venv
+
+      - name: ls Buckets aws
+        run: aws s3 ls
+
+      - name: debloy in Bucket aws
+        run: aws s3 cp utils.py s3://project-ci/code/ ; aws s3 cp test_utils.py s3://project-ci/code/
